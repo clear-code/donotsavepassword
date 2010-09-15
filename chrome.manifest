@@ -1,1 +1,3 @@
-
+component	{57748650-c0a7-11df-851a-0800200c9a66}	components/StartupService.js
+contract	@clear-code.com/donotsavepassword/startup;1	{57748650-c0a7-11df-851a-0800200c9a66}
+category	profile-after-change	UxUGlobalService	@clear-code.com/donotsavepassword/startup;1
