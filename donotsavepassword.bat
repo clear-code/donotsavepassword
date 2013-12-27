@@ -1,5 +1,5 @@
-set appname=%~n0
+set appname=donotsavepassword
 
 copy buildscript\makexpi.sh .\
-bash makexpi.sh -n %appname% -v
+bash makexpi.sh -n %appname%
 del makexpi.sh

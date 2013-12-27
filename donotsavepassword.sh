@@ -1,9 +1,8 @@
 #!/bin/sh
 
-appname=${0##*/}
-appname=${appname%.sh}
+appname=donotsavepassword
 
 cp buildscript/makexpi.sh ./
-./makexpi.sh -n $appname -v
+./makexpi.sh -n $appname
 rm ./makexpi.sh
 
