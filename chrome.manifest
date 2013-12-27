@@ -1,3 +1,11 @@
+# This Source Code Form is subject to the terms of the Mozilla Public
+# License, v. 2.0. If a copy of the MPL was not distributed with this
+# file, You can obtain one at http://mozilla.org/MPL/2.0/.
+
+content donotsavepassword content/
+
+style chrome://browser/content/preferences/preferences.xul chrome://donotsavepassword/content/preferences.css
+
 component	{57748650-c0a7-11df-851a-0800200c9a66}	components/Startup.js
 contract	@clear-code.com/donotsavepassword/startup;1	{57748650-c0a7-11df-851a-0800200c9a66}
 category	profile-after-change	DoNotSavePasswordStartupService	@clear-code.com/donotsavepassword/startup;1
