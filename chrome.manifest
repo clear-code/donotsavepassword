@@ -6,6 +6,7 @@ content donotsavepassword content/
 
 style chrome://browser/content/preferences/preferences.xul chrome://donotsavepassword/content/preferences.css
 style chrome://messenger/content/preferences/preferences.xul chrome://donotsavepassword/content/preferences.css
+style chrome://messenger/content/accountcreation/emailWizard.xul chrome://donotsavepassword/content/emailWizard.css
 
 component	{57748650-c0a7-11df-851a-0800200c9a66}	components/Startup.js
 contract	@clear-code.com/donotsavepassword/startup;1	{57748650-c0a7-11df-851a-0800200c9a66}
