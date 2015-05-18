@@ -11,6 +11,10 @@ const ObserverService = Cc['@mozilla.org/observer-service;1']
 			.getService(Ci.nsIObserverService);
 const Prefs = Cc['@mozilla.org/preferences;1']
 			.getService(Ci.nsIPrefBranch);
+const SSS = Cc['@mozilla.org/content/style-sheet-service;1']
+			.getService(Ci.nsIStyleSheetService);
+const IOService = Cc['@mozilla.org/network/io-service;1']
+			.getService(Ci.nsIIOService);
 
 function StartupService() { 
 }
@@ -48,10 +52,18 @@ StartupService.prototype = {
 					ObserverService.removeObserver(this, 'profile-after-change');
 					this.listeningProfileAfterChange = false;
 				}
+				this.hideSavedPasswordUI();
 				if (Prefs.getBoolPref('extensions.donotsavepassword@clear-code.com.clearStoredPasswords'))
 					this.clearStoredPasswords();
 				return;
 		}
+	},
+
+	hideSavedPasswordUI : function()
+	{
+		var sheet = IOService.newURI('chrome://donotsavepassword/content/global.css', null, null);
+		if (!SSS.sheetRegistered(sheet, SSS.USER_SHEET))
+			SSS.loadAndRegisterSheet(sheet, SSS.USER_SHEET);
 	},
  
 	clearStoredPasswords : function() 
