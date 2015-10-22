@@ -81,6 +81,24 @@ StartupService.prototype = {
 		loginInfos.forEach(function(aLoginInfo) {
 			LoginManager.removeLogin(aLoginInfo);
 		}, this);
+
+		try {
+		  var imported = Prefs.getBoolPref('signon.importedFromSqlite');
+		  if (imported) {
+		    // Firefox migrates "signons.sqlite" to "logins.json".
+		    // Because new password manager ignores signons.sqlite,
+		    // we cannot remove passwords stored into the file via
+		    // the login manager.
+		    let DIRService = Cc['@mozilla.org/file/directory_service;1']
+                     .getService(Ci.nsIProperties);
+            let oldFile = DIRService.get('ProfD', Ci.nsIFile);
+            oldFile.append('signons.sqlite');
+            if (oldFile.exists())
+              oldFile.remove(true);
+		  }
+		}
+		catch(e) {
+		}
 	}
 }; 
   
