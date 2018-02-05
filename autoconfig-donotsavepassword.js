@@ -14,8 +14,8 @@
       Services.obs.removeObserver(this, aTopic);
       this.hideSavedPasswordUI();
       if (getPref('extensions.donotsavepassword@clear-code.com.clearStoredPasswords')) {
-        this.clearStoredPasswords();
         this.clearMasterPassword();
+        this.clearStoredPasswords();
       }
     },
 
