@@ -94,26 +94,11 @@
     },
 
     clearMasterPassword() {
-      if (!this.hasMasterPassword())
-        return;
-
       const pk11db = Cc['@mozilla.org/security/pk11tokendb;1']
                       .getService(Ci.nsIPK11TokenDB);
       const token = pk11db.getInternalKeyToken();
-      token.reset();
-    },
-
-    hasMasterPassword() {
-      const secmodDB = Cc['@mozilla.org/security/pkcs11moduledb;1']
-                        .getService(Ci.nsIPKCS11ModuleDB);
-      const slot = secmodDB.findSlotByName('');
-      if (slot) {
-        const status = slot.status;
-        const hasMP = status != Ci.nsIPKCS11Slot.SLOT_UNINITIALIZED &&
-                      status != Ci.nsIPKCS11Slot.SLOT_READY;
-        return hasMP;
-      }
-      return false;
+      if (token.hasPassword)
+        token.reset();
     }
   }, 'profile-after-change', false);
 }
