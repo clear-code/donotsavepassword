@@ -54,7 +54,7 @@
           }
         }
       `;
-      const sheet = IOService.newURI(`data:text/css,${encodeURIComponent(rules)}`, null, null);
+      const sheet = Services.io.newURI(`data:text/css,${encodeURIComponent(rules)}`, null, null);
       const SSS = Cc['@mozilla.org/content/style-sheet-service;1']
                    .getService(Ci.nsIStyleSheetService);
       if (!SSS.sheetRegistered(sheet, SSS.USER_SHEET))
@@ -83,9 +83,7 @@
           // Because new password manager ignores signons.sqlite,
           // we cannot remove passwords stored into the file via
           // the login manager.
-          let DIRService = Cc['@mozilla.org/file/directory_service;1']
-                            .getService(Ci.nsIProperties);
-          let oldFile = DIRService.get('ProfD', Ci.nsIFile);
+          let oldFile = Services.dirsvc.get('ProfD', Ci.nsIFile);
           oldFile.append('signons.sqlite');
           if (oldFile.exists())
             oldFile.remove(true);
