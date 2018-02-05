@@ -11,7 +11,7 @@
 
   Services.obs.addObserver({
     observe(aSubject, aTopic, aData) {
-      Services.obs.removeObserver(this);
+      Services.obs.removeObserver(this, aTopic);
       this.hideSavedPasswordUI();
       if (getPref('extensions.donotsavepassword@clear-code.com.clearStoredPasswords')) {
         this.clearStoredPasswords();
